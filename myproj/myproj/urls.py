@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include   
-from board.views import home, board_topics, new_topic
+from board.views import home, board_topics, new_topic, topic_posts
 from accounts.views import signup
 from django.contrib.auth import views as auth_views
 
@@ -63,4 +63,7 @@ urlpatterns = [
     path('settings/password/done/', 
          auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
          name='password_change_done'),
+
+    path( 'boards/<int:pk>/topics/<int:topic_pk>/',topic_posts, name='topic_posts'),
+
 ]
