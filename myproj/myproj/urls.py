@@ -24,12 +24,14 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home, name="home"),
+    path("login/", auth_views.LoginView.as_view(template_name='login.html'), name="login"),
+
+    # Logged-in user views
     path("board/<int:pk>", board_topics , name="board_topics"),
     path("board/<int:pk>/new/", new_topic , name="new_topic"),
     path("signup/", signup, name="signup"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path("login/", auth_views.LoginView.as_view(template_name='login.html'), name="login"),
-
+    
 # Links to reset password if user forgets acccount password
     path('reset/', 
          auth_views.PasswordResetView.as_view(
