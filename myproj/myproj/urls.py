@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include   
-from board.views import home, board_topics, new_topic, topic_posts
+from board.views import home, board_topics, new_topic, topic_posts, reply_topic, PostUpdateView
 from accounts.views import signup
 from django.contrib.auth import views as auth_views
 
@@ -66,4 +66,11 @@ urlpatterns = [
 
     path( 'boards/<int:pk>/topics/<int:topic_pk>/',topic_posts, name='topic_posts'),
 
+    path( 'boards/<int:pk>/topics/<int:topic_pk>/reply/',reply_topic, name='reply_topic'),
+
+      path(
+        'boards/<int:pk>/topics/<int:topic_pk>/posts/<int:post_pk>/edit/',
+        PostUpdateView.as_view(),
+        name='edit_post'
+    ),
 ]
